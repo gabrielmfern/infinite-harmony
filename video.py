@@ -104,9 +104,7 @@ class first(Scene):
         self.play(FadeOut(terms), FadeOut(trailing_square), FadeOut(full_squares))
         giant_text = Text('SÉRIE').scale(10)
         self.play(Write(giant_text))
-        self.wait(9)
-        self.play(Transform(giant_text, Text('PROVA').scale(9)))
-        self.wait(7)
+        self.wait(11)
         self.play(FadeOut(giant_text), FadeIn(terms))
         self.play(terms.animate.to_corner(LEFT + UP))
         
@@ -162,7 +160,9 @@ class first(Scene):
         arrows = VGroup(arrow_1, arrow_2, arrow_3)
         self.play(ShowCreation(arrows))
 
-        self.play(Indicate(create_group_from_first_half_of(1)), Indicate(create_group_from_first_half_of(2)), Indicate(create_group_from_first_half_of(3)), Indicate(create_group_from_first_half_of(4)))
+        self.wait(4)
+
+        self.play(Indicate(create_group_from_first_half_of(1)), Indicate(create_group_from_first_half_of(2)), Indicate(create_group_from_first_half_of(3)), Indicate(create_group_from_first_half_of(4)), run_time=2)
 
         self.wait(3)
 
@@ -178,11 +178,11 @@ class first(Scene):
         size_3_half = create_size_brace_for_first_half_of(3)
         size_4_half = create_size_brace_for_first_half_of(4)
         sizes = VGroup(size_1_half, size_2_half, size_3_half, size_4_half)
-        self.play(ShowCreation(sizes))
+        self.play(ShowCreation(sizes), run_time=2)
         self.wait(4)
         self.play(Indicate(sizes))
         
-        self.wait(25)
+        self.wait(21)
         self.play(FadeOut(everything_group), FadeOut(sizes), FadeOut(arrows))
 
         sum_inverse_powers_of_2 = PartialSum(
@@ -194,7 +194,7 @@ class first(Scene):
                 power_groups.append(VGroup(term))
             else:
                 power_groups[math.ceil(math.log2(i + 1))].add(term)
-            self.play(ShowCreation(term), run_time=8/((i+1)**2))
+            self.play(ShowCreation(term), run_time=5/(i+5))
             # self.add(term)
 
         self.wait(10)
