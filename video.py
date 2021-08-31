@@ -56,7 +56,7 @@ class first(Scene):
         squares_divided = [square_divided_1]
         terms = VGroup(square_divided_1.submobjects[0])
         self.play(ShowCreation(square_divided_1))
-        self.wait(3)
+        self.wait(2)
         self.play(square_divided_1.submobjects[0].animate.to_corner(LEFT + DOWN))
         for n in range(2, 9):
             fade_out_all_pieces_except_first(squares_divided[n - 2])
@@ -66,11 +66,11 @@ class first(Scene):
             pieces_amount_label = Tex(str(n)).next_to(pieces_amount_brace, UP)
             squares_divided.append(square_divided)
             self.play(ShowCreation(square_divided), ShowCreation(pieces_amount_brace), Write(pieces_amount_label))
-            self.wait(2/(n**2))
+            self.wait(3/(n**2))
             self.play(square_divided.submobjects[0].animate.next_to(terms, RIGHT, 0), FadeOut(pieces_amount_brace), FadeOut(pieces_amount_label))
             terms.add(square_divided.submobjects[0])
         fade_out_all_pieces_except_first(squares_divided[7])
-        self.wait(2)
+        self.wait(4)
 
         first_term = nth_term(1).to_corner(LEFT + DOWN)
         new_terms = VGroup(first_term)
@@ -182,7 +182,7 @@ class first(Scene):
         self.wait(4)
         self.play(Indicate(sizes))
         
-        self.wait(17)
+        self.wait(25)
         self.play(FadeOut(everything_group), FadeOut(sizes), FadeOut(arrows))
 
         sum_inverse_powers_of_2 = PartialSum(
@@ -197,7 +197,7 @@ class first(Scene):
             self.play(ShowCreation(term), run_time=8/((i+1)**2))
             # self.add(term)
 
-        self.wait(4)
+        self.wait(10)
 
         def compare_power_group_to_respective_terms(p):
             # Make disappear all the terms that are not in the power group
@@ -243,8 +243,6 @@ class first(Scene):
 
         def group_all_power_group_terms(p):
             return VGroup(*(term for term in power_groups[p]))
-
-        self.wait()
 
         compare_power_group_to_respective_terms(3)
         compare_power_group_to_respective_terms(4)
